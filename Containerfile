@@ -9,7 +9,7 @@ COPY ublue-firstboot /usr/bin
 #RUN wget https://copr.fedorainfracloud.org/coprs/calcastor/gnome-patched/repo/fedora-$(rpm -E %fedora)/calcastor-gnome-patched-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_calcastor-gnome-patched.repo
 #RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:calcastor:gnome-patched mutter
 
-RUN rpm-ostree install distrobox gnome-tweaks just gstreamer1-plugin-openh264 mozilla-openh264 #htop btop vim powertop tlp ufw akmod-nvidia #xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
+RUN rpm-ostree install distrobox gnome-tweaks just #htop btop vim powertop tlp ufw akmod-nvidia #xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
