@@ -6,14 +6,16 @@ FROM quay.io/fedora-ostree-desktops/silverblue:${FEDORA_MAJOR_VERSION}
 COPY etc /etc
 
 COPY ublue-firstboot /usr/bin
-RUN wget https://packages.microsoft.com/yumrepos/edge/microsoft-edge-beta-110.0.1587.40-1.x86_64.rpm -O /tmp/microsoft-edge-beta-110.0.1587.40-1.x86_64.rpm
 RUN wget https://copr.fedorainfracloud.org/coprs/calcastor/gnome-patched/repo/fedora-$(rpm -E %fedora)/calcastor-gnome-patched-fedora-$(rpm -E %fedora).repo -O /etc/yum.repos.d/_copr_calcastor-gnome-patched.repo
 RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:calcastor:gnome-patched mutter
 
-RUN rpm-ostree install distrobox gnome-tweaks just tailscale asusctl supergfxctl keepassxc gstreamer1-plugin-openh264 mozilla-openh264 && \
+RUN rpm-ostree install distrobox gnome-tweaks gstreamer1-plugin-openh264 mozilla-openh264 htop btop vim powertop tlp ufw akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda && \
     sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
-    systemctl enable tailscaled.service && \
-    systemctl enable supergfxd.service && \
+    curl https://github.com/NoahHallows/fedora-silverblue/tlp.conf >> /etc/tlp.conf && \
+    curl https://github.com/NoahHallows/fedora-silverblue/before.rules >> /etc/ufw/before.rules && \
+    systemctl enable tlp && \
+    systemctl enable ufw && \
+    ufw enable && \
     ostree container commit
