@@ -10,14 +10,6 @@ echo "# Waiting for Internet connection"
 until /usr/bin/ping -q -c 1 flathub.org; do sleep 1; done
 echo "00"
 
-echo "# Removing Filtered Flathub Repository"
-/usr/bin/flatpak remote-delete flathub --force ||:
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Removing Filtered Flathub Repo Failed"
-        exit 1
-fi
-echo "3"
 
 echo "# Enabling Flathub Repository"
 /usr/bin/flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -28,32 +20,15 @@ if [ "$?" != 0 ] ; then
 fi
 echo "5"
 
-echo "# Replacing Fedora Flatpaks with Flathub Ones (this may take a while)"
-/usr/bin/flatpak install --user --noninteractive org.gnome.Platform//43
-/usr/bin/flatpak install --user --noninteractive --reinstall flathub $(flatpak list --app-runtime=org.fedoraproject.Platform --columns=application | tail -n +1 )
+echo "# Installing Discord"
+/usr/bin/flatpak install --user --nointeractive flathub com.discordapp.Discord
 if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Replacing Fedora Flatpaks Failed"
-        exit 1
+	zenity --error \
+		--text="Installing Discord failed"
+	exit 1
 fi
-echo "20"
+echo "15"
 
-echo "Removing all preinstalled Flatpaks"
-/usr/bin/flatpak remove --system --noninteractive --all ||:
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Removing all preinstalled flatpaks failed"
-        exit 1
-fi
-
-echo "# Removing Fedora Flatpak Repository"
-/usr/bin/flatpak remote-delete fedora --force ||:
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Removing Fedora Flatpak Repo Failed"
-        exit 1
-fi
-echo "25"
 
 echo "# Installing Firefox"
 /usr/bin/flatpak install --user --noninteractive flathub org.mozilla.firefox
@@ -64,11 +39,11 @@ if [ "$?" != 0 ] ; then
 fi
 echo "30"
 
-echo "# Installing Thunderbird"
-/usr/bin/flatpak install --user --noninteractive flathub org.mozilla.Thunderbird
+echo "# Installing Spotify"
+/usr/bin/flatpak install --user --noninteractive com.spotify.Client
 if [ "$?" != 0 ] ; then
         zenity --error \
-          --text="Installing Thunderbird Failed"
+          --text="Installing Spotify Failed"
         exit 1
 fi
 echo "40"
@@ -118,11 +93,11 @@ if [ "$?" != 0 ] ; then
 fi
 echo "90"
 
-echo "# Installing Celluloid Media Player"
-/usr/bin/flatpak install --user --noninteractive flathub io.github.celluloid_player.Celluloid
+echo "# Installing VLC"
+/usr/bin/flatpak install --user --noninteractive flathub org.videolan.VLC
 if [ "$?" != 0 ] ; then
         zenity --error \
-          --text="Installing Celluloid Failed"
+          --text="Installing VLC Failed"
         exit 1
 fi
 echo "100"
