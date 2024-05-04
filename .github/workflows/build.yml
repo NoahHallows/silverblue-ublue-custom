@@ -11,7 +11,7 @@ on:
     paths-ignore:
       - '**/README.md'
 env:
-    IMAGE_NAME: custom
+    IMAGE_NAME: noahs-fedora
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
 jobs:
@@ -25,9 +25,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        major_version: [37]
+        major_version: [40]
         include:
-          - major_version: 37
+          - major_version: 40
             is_latest: true
             is_stable: true
     steps: 
