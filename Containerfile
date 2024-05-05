@@ -14,10 +14,10 @@ RUN rpm-ostree install distrobox gnome-tweaks just htop powertop fastfetch btop 
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
-    #git clone https://github.com/NoahHallows/silverblue-ublue-custom.git
-    #cp silverblue-ublue-custom/config-files/tlp.conf /etc/tlp.conf && \
-    #cp silverblue-ublue-custom/config-files/before.rules >> /etc/ufw/before.rules && \
-    #systemctl enable tlp && \
-    #systemctl enable ufw && \
-    #ufw enable && \
+    git clone https://github.com/NoahHallows/silverblue-ublue-custom.git
+    cp silverblue-ublue-custom/config-files/tlp.conf /etc/tlp.conf && \
+    cp silverblue-ublue-custom/config-files/before.rules >> /etc/ufw/before.rules && \
+    systemctl enable tlp && \
+    systemctl enable ufw && \
+    ufw enable && \
     ostree container commit
