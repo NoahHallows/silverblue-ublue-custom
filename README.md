@@ -18,11 +18,11 @@ These github actions and methods are meant to be shared and improved upon, [so c
 
 Warning: This is an experimental feature and should not be used in production (yet), however it's pretty close)
 
-    sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/base:latest
+    sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/noahhallows/noahs-fedora:latest
     
 We build date tags as well, so if you want to rebase to a particular day's release:
   
-    sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/ublue-os/base:20221217 
+    sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/noahhallows/noahs-fedora:latest:20221217 
 
 The `latest` tag will automatically point to the latest build. 
 
