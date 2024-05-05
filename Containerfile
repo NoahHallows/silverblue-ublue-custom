@@ -16,7 +16,7 @@ RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-os
     systemctl enable flatpak-automatic.timer && \
     git clone https://github.com/NoahHallows/silverblue-ublue-custom.git && \
     cp silverblue-ublue-custom/config-files/tlp.conf /etc/tlp.conf && \
-    cp silverblue-ublue-custom/config-files/before.rules >> /etc/ufw/before.rules && \
+    cp silverblue-ublue-custom/config-files/before.rules /etc/ufw/before.rules && \
     systemctl enable tlp && \
     systemctl enable ufw && \
     ufw enable && \
