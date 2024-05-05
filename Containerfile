@@ -11,7 +11,8 @@ COPY ublue-firstboot /usr/bin
 
 RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 RUN rpm-ostree install distrobox gnome-tweaks just htop powertop fastfetch btop vim tlp kmod-nvidia xorg-x11-drv-nvidia figlet lolcat && \
-    rpm-ostree uninstall power-profiles-daemon
+    rpm-ostree uninstall power-profiles-daemon && \
+    rpm-ostree kargs --append=rd.driver.blacklist=nouveau --append=modprobe.blacklist=nouveau --append=nvidia-drm.modeset=1
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
