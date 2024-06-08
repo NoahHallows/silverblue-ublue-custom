@@ -21,7 +21,7 @@ fi
 echo "5"
 
 echo "# Installing Discord"
-/usr/bin/flatpak install --user --nointeractive flathub com.discordapp.Discord
+/usr/bin/flatpak install --user --noninteractive flathub com.discordapp.Discord
 if [ "$?" != 0 ] ; then
 	zenity --error \
 		--text="Installing Discord failed"
@@ -39,7 +39,7 @@ fi
 echo "15"
 
 echo "# Installing Chromium"
-usr/bin/flatpak install --user --nointeractive flathub org.chromium.Chromium
+usr/bin/flatpak install --user --noninteractive flathub org.chromium.Chromium
 if [ "$?" != 0 ] ; then
 	zenity --error \
 		--text="Installing Chromium failed"
