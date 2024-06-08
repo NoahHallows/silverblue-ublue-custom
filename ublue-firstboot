@@ -29,14 +29,14 @@ if [ "$?" != 0 ] ; then
 fi
 echo "10"
 
-echo "# Installing oh-my-bash"
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-if [ "$?" != 0 ] ; then
-	zenity --error \
-		--text="Installing oh-my-bash failed"
-	exit 1
-fi
-echo "15"
+#echo "# Installing oh-my-bash"
+#bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+#if [ "$?" != 0 ] ; then
+#	zenity --error \
+#		--text="Installing oh-my-bash failed"
+#	exit 1
+#fi
+#echo "15"
 
 echo "# Installing Chromium"
 usr/bin/flatpak install --user --noninteractive flathub org.chromium.Chromium
