@@ -83,6 +83,18 @@ if [ "$?" != 0 ] ; then
 fi
 echo "70"
 
+echo "# Installing blur my shell"
+wget https://github.com/aunetx/blur-my-shell/releases/download/v62/blur-my-shell@aunetx.shell-extension.zip
+gnome-extensions install blur-my-shell@aunetx.shell-extension.zip
+rm blur-my-shell@aunetx.shell-extension.zip
+echo "73"
+
+echo "# Installing bluetooth quick connect"
+wget https://github.com/Extensions-Valhalla/gnome-bluetooth-quick-connect/releases/download/v49/bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+gnome-extensions install bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+rm bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+echo "77"
+
 echo "# Installing DejaDup Backup"
 /usr/bin/flatpak install --user --noninteractive flathub org.gnome.DejaDup
 if [ "$?" != 0 ] ; then
@@ -126,7 +138,7 @@ cp -n /etc/justfile "$HOME"/.justfile
 
 ) | 
      
-   zenity --progress --title="uBlue Desktop Firstboot" --percentage=0 --auto-close --no-cancel --width=300
+   zenity --progress --title="Noah's Fedora Firstboot" --percentage=0 --auto-close --no-cancel --width=300
 
 if [ "$?" != 0 ] ; then
         zenity --error \
