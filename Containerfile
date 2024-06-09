@@ -16,9 +16,7 @@ RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-os
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
     systemctl enable tlp && \
-    iptables -P INPUT DROP
-    iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
-    iptables -A INPUT -p icmp --icmp-type destination-unreachable -j DROP
-    systemctl enable iptables
-    sh -c ‘iptables-save > /etc/iptables/iptables.rules’
+    firewall-cmd --set-target=DROP --zone=public --permanent
+    firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
+    firewall-cmd --reload
     ostree container commit
