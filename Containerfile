@@ -16,7 +16,13 @@ RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-os
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
     systemctl enable tlp && \
+<<<<<<< HEAD
     firewall-cmd --set-target=DROP --zone=public --permanent && \
     firewall-cmd --zone=FedoraWorkstation --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent && \
     firewall-cmd --reload && \
+=======
+    firewall-cmd --set-target=DROP --zone=public --permanent
+    firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
+    firewall-cmd --reload
+>>>>>>> parent of e84cb94 (properly added firewall)
     ostree container commit
