@@ -47,11 +47,6 @@ if [ "$?" != 0 ] ; then
 fi
 echo "20"
 
-echo "Configuring firewall"
-firewall-cmd --set-target=DROP --zone=public --permanent
-firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
-firewall-cmd --reload
-echo "25"
 
 echo "# Installing Firefox"
 /usr/bin/flatpak install --user --noninteractive flathub org.mozilla.firefox
