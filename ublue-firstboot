@@ -39,7 +39,7 @@ echo "10"
 #echo "15"
 
 echo "# Installing Chromium"
-usr/bin/flatpak install --user --noninteractive flathub org.chromium.Chromium
+/usr/bin/flatpak install --user --noninteractive flathub org.chromium.Chromium
 if [ "$?" != 0 ] ; then
 	zenity --error \
 		--text="Installing Chromium failed"
