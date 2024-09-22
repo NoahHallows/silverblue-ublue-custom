@@ -2,7 +2,7 @@ name: build-ublue
 on:
   pull_request:
     branches:
-      - main
+      - beta
   schedule:
     - cron: '20 20 * * *'  # 8:20pm everyday
   push:
@@ -25,9 +25,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        major_version: [40]
+        major_version: [41]
         include:
-          - major_version: 40
+          - major_version: 41
             is_latest: true
             is_stable: true
     steps: 
