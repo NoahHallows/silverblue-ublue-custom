@@ -10,8 +10,8 @@ COPY ublue-firstboot /usr/bin
 #RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:calcastor:gnome-patched mutter
 
 RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-RUN rpm-ostree install distrobox gnome-tweaks just htop powertop fastfetch btop vim tlp figlet lolcat gparted nvtop # && \
-#    rpm-ostree uninstall power-profiles-daemon
+RUN rpm-ostree install distrobox gnome-tweaks just htop powertop fastfetch btop vim tlp figlet lolcat gparted nvtop && \
+    rpm-ostree uninstall tuned
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
