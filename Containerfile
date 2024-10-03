@@ -15,5 +15,5 @@ RUN systemctl disable tuned
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
-    systmectl enable tlp && \
+    systemctl enable tlp && \
     ostree container commit
