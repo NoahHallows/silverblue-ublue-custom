@@ -12,8 +12,8 @@ COPY ublue-firstboot /usr/bin
 RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 RUN rpm-ostree install distrobox gnome-tweaks just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh tlp
 RUN systemctl disable tuned
-RUN firewall-cmd --set-target=DROP --zone=public --permanent && \
-    firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
+#RUN firewall-cmd --set-target=DROP --zone=public --permanent && \
+#    firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
 RUN sed -i 's/#AutomaticUpdatePolicy.*/AutomaticUpdatePolicy=stage/' /etc/rpm-ostreed.conf && \
     systemctl enable rpm-ostreed-automatic.timer && \
     systemctl enable flatpak-automatic.timer && \
