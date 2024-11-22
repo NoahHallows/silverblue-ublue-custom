@@ -71,14 +71,14 @@ if [ "$?" != 0 ] ; then
 fi
 echo "40"
 
-echo "# Installing Extension Manager"
-/usr/bin/flatpak install --user --noninteractive flathub com.mattjakeman.ExtensionManager
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Installing Extension Manager Failed"
-        exit 1
-fi
-echo "50"
+#echo "# Installing Extension Manager"
+#/usr/bin/flatpak install --user --noninteractive flathub com.mattjakeman.ExtensionManager
+#if [ "$?" != 0 ] ; then
+#        zenity --error \
+#          --text="Installing Extension Manager Failed"
+#        exit 1
+#fi
+#echo "50"
 
 echo "# Installing LibreOffice"
 /usr/bin/flatpak install --user --noninteractive flathub org.libreoffice.LibreOffice
@@ -89,17 +89,17 @@ if [ "$?" != 0 ] ; then
 fi
 echo "70"
 
-echo "# Installing blur my shell"
-wget https://github.com/aunetx/blur-my-shell/releases/download/v62/blur-my-shell@aunetx.shell-extension.zip
-gnome-extensions install blur-my-shell@aunetx.shell-extension.zip
-rm blur-my-shell@aunetx.shell-extension.zip
-echo "73"
+#echo "# Installing blur my shell"
+#wget https://github.com/aunetx/blur-my-shell/releases/download/v62/blur-my-shell@aunetx.shell-extension.zip
+#gnome-extensions install blur-my-shell@aunetx.shell-extension.zip
+#rm blur-my-shell@aunetx.shell-extension.zip
+#echo "73"
 
-echo "# Installing bluetooth quick connect"
-wget https://github.com/Extensions-Valhalla/gnome-bluetooth-quick-connect/releases/download/v49/bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
-gnome-extensions install bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
-rm bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
-echo "77"
+#echo "# Installing bluetooth quick connect"
+#wget https://github.com/Extensions-Valhalla/gnome-bluetooth-quick-connect/releases/download/v49/bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+#gnome-extensions install bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+#rm bluetooth-quick-connect@bjarosze.gmail.com.shell-extension.zip
+#echo "77"
 
 echo "# Installing DejaDup Backup"
 /usr/bin/flatpak install --user --noninteractive flathub org.gnome.DejaDup
@@ -110,14 +110,14 @@ if [ "$?" != 0 ] ; then
 fi
 echo "80"
 
-echo "# Installing Font Downloader"
-/usr/bin/flatpak install --user --noninteractive flathub org.gustavoperedo.FontDownloader
-if [ "$?" != 0 ] ; then
-        zenity --error \
-          --text="Installing FontDownloader Failed"
-        exit 1
-fi
-echo "85"
+#echo "# Installing Font Downloader"
+#/usr/bin/flatpak install --user --noninteractive flathub org.gustavoperedo.FontDownloader
+#if [ "$?" != 0 ] ; then
+#        zenity --error \
+#          --text="Installing FontDownloader Failed"
+#        exit 1
+#fi
+#echo "85"
 
 echo "# Installing Flatseal"
 /usr/bin/flatpak install --user --noninteractive flathub com.github.tchx84.Flatseal
@@ -126,13 +126,22 @@ if [ "$?" != 0 ] ; then
           --text="Installing Flatseal Failed"
         exit 1
 fi
-echo "90"
+echo "85"
 
 echo "# Installing VLC"
 /usr/bin/flatpak install --user --noninteractive flathub org.videolan.VLC
 if [ "$?" != 0 ] ; then
         zenity --error \
           --text="Installing VLC Failed"
+        exit 1
+fi
+echo "90"
+
+echo "# Importing secure boot keys"
+sudo mokutil --import /etc/pki/akmods/certs/public_key.der
+if [ "$?" != 0 ] ; then
+        zenity --error \
+          --text="Importing secure boot keys Failed"
         exit 1
 fi
 echo "100"
