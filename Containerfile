@@ -13,6 +13,7 @@ RUN rpm-ostree install https://download1.rpmfusion.org/free/fedora/rpmfusion-fre
 RUN rpm-ostree install distrobox just htop powertop fastfetch btop neovim figlet lolcat gparted nvtop gh cronie cronie-anacron dotnet-sdk-8.0 rpmdevtools vim-common
 RUN wget -P /etc/yum.repos.d/ https://copr.fedorainfracloud.org/coprs/lukenukem/asus-linux/repo/fedora-41/lukenukem-asus-linux-fedora-41.repo && rpm-ostree update
 RUN rpm-ostree install asusctl supergfxctl asusctl-rog-gui
+RUN sudo sh -c 'echo -e "[unityhub]\nname=Unity Hub\nbaseurl=https://hub.unity3d.com/linux/repos/rpm/stable\nenabled=1\ngpgcheck=1\ngpgkey=https://hub.unity3d.com/linux/repos/rpm/stable/repodata/repomd.xml.key\nrepo_gpgcheck=1" > /etc/yum.repos.d/unityhub.repo' && rpm-ostree update && rpm-ostree install unityhub
 #RUN rpm-ostree install akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-cuda
 #RUN firewall-cmd --set-target=DROP --zone=public --permanent && \
 #    firewall-cmd --zone=nagios --remove-icmp-block={echo-request,echo-reply,timestamp-request,timestamp-reply} --permanent
